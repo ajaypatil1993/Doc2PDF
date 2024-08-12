@@ -50,12 +50,12 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-gray-50 to-gray-200 min-h-screen flex items-center justify-center">
-      <div className="max-w-xl mx-auto bg-white p-10 rounded-xl shadow-lg border border-gray-300">
-        <h1 className="text-5xl font-extrabold text-center text-gray-800 mb-6">
+    <div className="bg-gradient-to-r from-gray-50 to-gray-200 dark:from-gray-900 dark:to-gray-800 min-h-screen flex items-center justify-center">
+      <div className="max-w-xl mx-auto bg-white dark:bg-gray-800 p-10 rounded-xl shadow-lg border border-gray-300 dark:border-gray-700">
+        <h1 className="text-5xl font-extrabold text-center text-gray-800 dark:text-white mb-6">
           Convert Word to PDF Online
         </h1>
-        <p className="text-lg md:text-xl text-center mb-8 px-6 py-3 bg-gray-100 text-gray-700 rounded-lg shadow-md">
+        <p className="text-lg md:text-xl text-center mb-8 px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg shadow-md">
           Easily convert Word documents to PDF format online, without having to
           install any software.
         </p>
