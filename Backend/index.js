@@ -5,15 +5,13 @@ const path = require("path");
 const cors = require("cors");
 
 const app = express();
-const port = 3000;
 
 app.use(cors());
 
 // setting up the file storage
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads");
+    cb(null, path.join(__dirname, "uploads"));
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -21,7 +19,8 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-app.post("/convertFile", upload.single("file"), (req, res, next) => {
+
+app.post("/api/convertFile", upload.single("file"), (req, res, next) => {
   try {
     if (!req.file) {
       return res.status(400).json({
@@ -29,12 +28,13 @@ app.post("/convertFile", upload.single("file"), (req, res, next) => {
       });
     }
 
-    // Definning output file path
+    // Define output file path
     let outputPath = path.join(
       __dirname,
-      "files",
+      "uploads",
       `${req.file.originalname}.pdf`
     );
+
     docxToPDF(req.file.path, outputPath, (err, result) => {
       if (err) {
         console.log(err);
@@ -54,6 +54,5 @@ app.post("/convertFile", upload.single("file"), (req, res, next) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`server is listening on port ${port}`);
-});
+// Vercel automatically assigns a port, so no need to define it.
+module.exports = app;
